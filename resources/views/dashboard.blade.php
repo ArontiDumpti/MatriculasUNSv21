@@ -139,11 +139,11 @@
                 <div class="space-y-4 pt-4 border-t-2 border-[#DC2C4C]/30">
                     <div class="flex justify-between items-center text-xs font-mono">
                         <span class="text-gray-600 font-bold">Estado:</span>
-                        <span class="font-extrabold text-green-800 bg-green-100 px-2.5 py-1 rounded-full">HABILITADO</span>
+                        <span class="font-extrabold px-2.5 py-1 rounded-full {{ $matriculaConfirmada ? 'text-gray-600 bg-gray-200' : 'text-green-800 bg-green-100' }}">{{ $matriculaConfirmada ? 'MATRICULADO' : 'HABILITADO' }}</span>
                     </div>
 
-                    <a href="{{ url('/matricula') }}" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-tech font-extrabold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition text-xs tracking-wider shadow-lg">
-                        <span>INICIAR MATRÍCULA AHORA</span>
+                    <a href="{{ $matriculaConfirmada ? route('consolidado') : route('matricula') }}" class="w-full {{ $matriculaConfirmada ? 'bg-gray-300 hover:bg-gray-400 text-gray-700' : 'bg-amber-500 hover:bg-amber-600 text-white' }} font-tech font-extrabold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition text-xs tracking-wider shadow-lg">
+                        <span>{{ $matriculaConfirmada ? 'VER MATRÍCULA REGISTRADA' : 'INICIAR MATRÍCULA AHORA' }}</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>

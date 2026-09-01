@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\HorarioController;
+use App\Http\Controllers\MatriculaController;
 use App\Models\Curso;
+use App\Models\Matricula;
 
 // Autenticación de Usuarios
 Route::get('/', [AuthController::class, 'showLoginForm']);
@@ -22,18 +24,23 @@ Route::get('/dashboard', function () {
         default => 0,
     };
     $cursosDisponibles = Curso::where('escuela_profesional', $usuario->escuela_profesional)
-        ->where('ciclo', $ciclo)->where('estado', 'activo')->count();
+        ->where('ciclo', $ciclo)->where('estado', 'activo')
+        ->whereDoesntHave('secciones.detallesMatricula.matricula', function ($query) use ($usuario) {
+            $query->where('user_id', $usuario->id)->where('ciclo', '2026-I')->where('estado', 'confirmada');
+        })->count();
 
-    return view('dashboard', compact('cursosDisponibles'));
+    $matriculaConfirmada = Matricula::where('user_id', $usuario->id)
+        ->where('ciclo', '2026-I')->where('estado', 'confirmada')->exists();
+
+    return view('dashboard', compact('cursosDisponibles', 'matriculaConfirmada'));
 })->name('dashboard');
 
 Route::get('/horarios', [HorarioController::class, 'index'])->name('horarios');
 
 Route::get('/cursos-pendientes', [CursoController::class, 'pendientes'])->name('cursos.pendientes');
 
-Route::get('/matricula', [CursoController::class, 'matricula'])->name('matricula');
+Route::get('/matricula', [MatriculaController::class, 'create'])->name('matricula');
+Route::post('/matricula', [MatriculaController::class, 'store'])->name('matricula.store');
 
-Route::get('/consolidado', function () {
-    return view('matricula.consolidado');
-});
+Route::get('/consolidado', [MatriculaController::class, 'consolidado'])->name('consolidado');
 });

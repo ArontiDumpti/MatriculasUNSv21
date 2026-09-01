@@ -9,4 +9,9 @@ class Curso extends Model
     protected $fillable = [
         'codigo', 'nombre', 'escuela_profesional', 'creditos', 'ciclo', 'estado',
     ];
+
+    public function secciones()
+    {
+        return $this->hasMany(Seccion::class);
+    }
 }

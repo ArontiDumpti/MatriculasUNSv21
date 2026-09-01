@@ -10,7 +10,7 @@ class CursoController extends Controller
 {
     public function pendientes(): View
     {
-        $cursos = $this->cursosDelUsuario();
+        $cursos = $this->cursosDelUsuario(true);
 
         return view('cursos.pendientes', compact('cursos'));
     }
@@ -22,17 +22,26 @@ class CursoController extends Controller
         return view('matricula.index', compact('cursos'));
     }
 
-    private function cursosDelUsuario(): Collection
+    private function cursosDelUsuario(bool $soloPendientes = false): Collection
     {
         $usuario = auth()->user();
         $ciclo = $this->cicloNumerico($usuario->ciclo);
 
-        return Curso::query()
+        $consulta = Curso::query()
             ->where('escuela_profesional', $usuario->escuela_profesional)
             ->where('ciclo', $ciclo)
             ->where('estado', 'activo')
-            ->orderBy('codigo')
-            ->get();
+            ->orderBy('codigo');
+
+        if ($soloPendientes) {
+            $consulta->whereDoesntHave('secciones.detallesMatricula.matricula', function ($query) use ($usuario) {
+                $query->where('user_id', $usuario->id)
+                    ->where('ciclo', '2026-I')
+                    ->where('estado', 'confirmada');
+            });
+        }
+
+        return $consulta->get();
     }
 
     private function cicloNumerico(string $ciclo): int

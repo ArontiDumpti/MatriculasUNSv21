@@ -8,7 +8,11 @@
         <div><span class="bg-amber-500 text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wider">Proceso online 2026-I</span><h2 class="text-2xl font-extrabold mt-1">Selección de Asignaturas</h2><p class="text-xs text-red-100 mt-0.5">{{ auth()->user()->escuela_profesional }} · {{ auth()->user()->ciclo }}</p></div>
         <div class="bg-white/10 backdrop-blur px-5 py-3 rounded-xl border border-white/20 text-right self-end sm:self-auto"><p class="text-[10px] text-amber-300 font-bold uppercase tracking-wider">Créditos Seleccionados</p><p class="text-2xl font-extrabold text-white font-tech"><span id="credit-count">0</span> / 22 MAX</p></div>
     </div>
-    <form action="{{ url('/consolidado') }}" method="GET" class="space-y-6">
+    <form action="{{ route('matricula.store') }}" method="POST" class="space-y-6">
+        @csrf
+        @if ($errors->has('cursos'))
+            <div class="bg-red-50 border-l-4 border-[#DC2C4C] p-3 rounded text-xs text-red-700 font-medium">{{ $errors->first('cursos') }}</div>
+        @endif
         <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 space-y-4">
             <div class="flex justify-between items-center pb-3 border-b border-gray-100"><h3 class="font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-list-check text-[#DC2C4C]"></i>Asignaturas Aptas para {{ auth()->user()->ciclo }}</h3><span class="text-xs text-gray-500">Selecciona al menos 1 curso</span></div>
             <div class="space-y-3">
