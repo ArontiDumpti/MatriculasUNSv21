@@ -30,16 +30,16 @@
 
 <div class="space-y-8">
 
-    <!-- Banner Principal -->
+    <!-- Banner Principal con Saludo Dinámico al Estudiante -->
     <div class="text-center max-w-3xl mx-auto space-y-2">
         <span class="bg-[#DC2C4C]/10 text-[#DC2C4C] text-xs font-tech font-extrabold px-3 py-1 rounded-full uppercase tracking-widest border border-[#DC2C4C]/20">
             SISTEMA INTEGRADO DE CONTROL
         </span>
         <h2 class="font-tech text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-wide uppercase">
-            BIENVENIDO AL SISTEMA DE INTELIGENCIA ACADÉMICA
+            BIENVENIDO, {{ strtoupper(auth()->user()->nombres ?? 'FERNANDO') }}
         </h2>
         <p class="text-xs sm:text-sm text-gray-500">
-            Selecciona un módulo principal para acceder a la información de la institución.
+            Selecciona un módulo principal para acceder a la información de {{ auth()->user()->escuela_profesional ?? 'Ingeniería de Sistemas' }}.
         </p>
     </div>
 
@@ -70,8 +70,8 @@
 
                 <div class="space-y-4 pt-4 border-t border-gray-100 pr-6">
                     <div class="flex justify-between items-center text-xs font-mono">
-                        <span class="text-gray-400 font-semibold">Último Registro:</span>
-                        <span class="font-extrabold text-gray-900 bg-gray-100 px-2 py-0.5 rounded">2025-II</span>
+                        <span class="text-gray-400 font-semibold">Ciclo:</span>
+                        <span class="font-extrabold text-gray-900 bg-gray-100 px-2 py-0.5 rounded">{{ auth()->user()->ciclo ?? 'VI CICLO' }}</span>
                     </div>
 
                     <a href="{{ url('/horarios') }}" class="w-full bg-[#DC2C4C] hover:bg-[#B51F3B] text-white font-tech font-extrabold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition text-xs tracking-wider shadow-md">

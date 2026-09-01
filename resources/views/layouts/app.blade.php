@@ -46,11 +46,13 @@
                     </a>
                 </div>
 
-                <!-- Estado del Ciclo & Usuario -->
+                <!-- Estado del Ciclo Dinámico & Usuario Logueado -->
                 <div class="flex items-center space-x-4">
                     <div class="bg-[#B51F3B] px-3.5 py-1.5 rounded-lg border border-amber-400/40 text-right hidden sm:block">
                         <p class="text-[10px] text-amber-300 font-bold uppercase tracking-wider">Ciclo Académico Actual</p>
-                        <p class="text-sm font-extrabold text-white font-tech">VI CICLO &bull; 2026-I</p>
+                        <p class="text-sm font-extrabold text-white font-tech">
+                            {{ auth()->user()->ciclo ?? 'VI CICLO' }} &bull; 2026-I
+                        </p>
                     </div>
 
                     <div class="text-right hidden md:block">
@@ -58,18 +60,21 @@
                             {{ auth()->user()->nombres ?? 'Fernando' }} {{ auth()->user()->apellidos ?? 'Chinchay' }}
                         </p>
                         <p class="text-xs text-red-200">
-                            Cod: {{ auth()->user()->codigo_institucional ?? '0202114001' }}
+                            {{ auth()->user()->escuela_profesional ?? 'Ingeniería de Sistemas' }}
                         </p>
                     </div>
 
-                    <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow border-2 border-white overflow-hidden">
-                        <img src="{{ asset('img/perfil.jpg') }}" alt="Perfil" class="w-full h-full object-cover" onerror="this.outerHTML='F'">
+                    <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow border-2 border-white overflow-hidden uppercase">
+                        {{ substr(auth()->user()->nombres ?? 'F', 0, 1) }}
                     </div>
 
-                    <a href="{{ url('/login') }}" class="text-red-100 hover:text-white text-sm flex items-center gap-1 bg-[#B51F3B] px-3 py-1.5 rounded-md transition hover:bg-red-950">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <span class="hidden md:inline">Salir</span>
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST" class="inline">
+                        @csrf
+                        <button type="submit" class="text-red-100 hover:text-white text-sm flex items-center gap-1 bg-[#B51F3B] px-3 py-1.5 rounded-md transition hover:bg-red-950">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span class="hidden md:inline">Salir</span>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

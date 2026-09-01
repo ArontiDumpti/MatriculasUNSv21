@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    //Ejecutar la migración
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
@@ -14,15 +13,16 @@ return new class extends Migration
             $table->string('codigo_institucional', 15)->unique()->after('dni');
             $table->string('nombres')->after('codigo_institucional');
             $table->string('apellidos')->after('nombres');
+            $table->string('escuela_profesional')->default('Ingeniería de Sistemas')->after('apellidos');
+            $table->string('ciclo')->default('VI CICLO')->after('escuela_profesional');
             $table->enum('estado', ['activo', 'inactivo'])->default('activo')->after('password');
         });
     }
 
-    //Revertir la migración
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['dni', 'codigo_institucional', 'nombres', 'apellidos', 'estado']);
+            $table->dropColumn(['dni', 'codigo_institucional', 'nombres', 'apellidos', 'escuela_profesional', 'ciclo', 'estado']);
         });
     }
 };
