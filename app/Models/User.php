@@ -13,6 +13,7 @@ class User extends Authenticatable
     protected $fillable = [
         'dni',
         'codigo_institucional',
+        'codigo_uns',
         'nombres',
         'apellidos',
         'escuela_profesional',

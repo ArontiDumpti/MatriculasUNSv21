@@ -104,7 +104,7 @@
                 <div class="space-y-4 pt-4 border-t border-gray-100 pr-6">
                     <div class="flex justify-between items-center text-xs font-mono">
                         <span class="text-gray-400 font-semibold">Cursos Aptos:</span>
-                        <span class="font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded">8 DISPONIBLES</span>
+                        <span class="font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded">{{ $cursosDisponibles }} DISPONIBLES</span>
                     </div>
 
                     <a href="{{ url('/cursos-pendientes') }}" class="w-full bg-[#DC2C4C] hover:bg-[#B51F3B] text-white font-tech font-extrabold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition text-xs tracking-wider shadow-md">
