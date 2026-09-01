@@ -10,7 +10,7 @@
 </head>
 <body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
 
-    <!-- Card de Login -->
+    <!-- Card de Login Institucional -->
     <div class="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden border border-gray-200">
         
         <!-- Header Rojo Carmesí UNS -->
@@ -42,7 +42,7 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
                         <i class="fa-solid fa-id-card"></i>
                     </span>
-                    <input type="text" name="login" required placeholder="Ej: 0202114001 o 72819201" value="{{ old('login', '0202114001') }}" class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-[#DC2C4C] focus:border-[#DC2C4C] outline-none transition">
+                    <input type="text" name="login" required placeholder="Ingrese su código o correo" value="{{ old('login') }}" class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-[#DC2C4C] focus:border-[#DC2C4C] outline-none transition">
                 </div>
             </div>
 
@@ -54,7 +54,7 @@
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
                         <i class="fa-solid fa-lock"></i>
                     </span>
-                    <input type="password" name="password" required placeholder="••••••••" value="12345678" class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-[#DC2C4C] focus:border-[#DC2C4C] outline-none transition">
+                    <input type="password" name="password" required placeholder="••••••••" class="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-300 rounded-xl text-sm focus:ring-2 focus:ring-[#DC2C4C] focus:border-[#DC2C4C] outline-none transition">
                 </div>
             </div>
 
