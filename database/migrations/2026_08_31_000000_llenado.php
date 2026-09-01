@@ -13,19 +13,33 @@ return new class extends Migration
     {
         $timestamp = now();
 
-        DB::table('users')->insert([
-            'dni' => '72819201',
-            'codigo_institucional' => '0202114001',
-            'nombres' => 'Fernando',
-            'apellidos' => 'Chinchay',
-            'name' => 'Fernando Chinchay',
-            'email' => 'fernando.chinchay@uns.edu.pe',
-            'email_verified_at' => $timestamp,
-            'password' => Hash::make('password'),
-            'estado' => 'activo',
-            'created_at' => $timestamp,
-            'updated_at' => $timestamp,
-        ]);
+        $usuarios = [
+            ['dni' => '72819201', 'codigo_institucional' => '0202114001', 'codigo_uns' => '202114001', 'nombres' => 'Fernando', 'apellidos' => 'Chinchay', 'escuela_profesional' => 'Ingeniería de Sistemas', 'ciclo' => 'VI CICLO'],
+            ['dni' => '72819202', 'codigo_institucional' => '0202114006', 'codigo_uns' => '202114006', 'nombres' => 'Patri', 'apellidos' => 'Benites', 'escuela_profesional' => 'Ingeniería de Sistemas', 'ciclo' => 'VI CICLO'],
+            ['dni' => '72819203', 'codigo_institucional' => '0202114007', 'codigo_uns' => '202114007', 'nombres' => 'Aaron', 'apellidos' => 'Segura', 'escuela_profesional' => 'Ingeniería de Sistemas', 'ciclo' => 'VI CICLO'],
+            ['dni' => '72819204', 'codigo_institucional' => '0202114002', 'codigo_uns' => '202114002', 'nombres' => 'Carlos', 'apellidos' => 'Mendoza', 'escuela_profesional' => 'Ingeniería Civil', 'ciclo' => 'VIII CICLO'],
+            ['dni' => '72819205', 'codigo_institucional' => '0202114008', 'codigo_uns' => '202114008', 'nombres' => 'Omar', 'apellidos' => 'Castro', 'escuela_profesional' => 'Ingeniería Civil', 'ciclo' => 'IV CICLO'],
+            ['dni' => '72819206', 'codigo_institucional' => '0202114012', 'codigo_uns' => '202114012', 'nombres' => 'Gabriel', 'apellidos' => 'Silva', 'escuela_profesional' => 'Ingeniería Civil', 'ciclo' => 'VI CICLO'],
+            ['dni' => '72819207', 'codigo_institucional' => '0202114003', 'codigo_uns' => '202114003', 'nombres' => 'María', 'apellidos' => 'Rodríguez', 'escuela_profesional' => 'Medicina Humana', 'ciclo' => 'X CICLO'],
+            ['dni' => '72819208', 'codigo_institucional' => '0202114009', 'codigo_uns' => '202114009', 'nombres' => 'Sofía', 'apellidos' => 'Morales', 'escuela_profesional' => 'Medicina Humana', 'ciclo' => 'II CICLO'],
+            ['dni' => '72819209', 'codigo_institucional' => '0202114004', 'codigo_uns' => '202114004', 'nombres' => 'Ana', 'apellidos' => 'Torres', 'escuela_profesional' => 'Enfermería', 'ciclo' => 'IV CICLO'],
+            ['dni' => '72819210', 'codigo_institucional' => '0202114011', 'codigo_uns' => '202114011', 'nombres' => 'Lucía', 'apellidos' => 'Fernández', 'escuela_profesional' => 'Enfermería', 'ciclo' => 'VI CICLO'],
+            ['dni' => '72819211', 'codigo_institucional' => '0202114005', 'codigo_uns' => '202114005', 'nombres' => 'Juan', 'apellidos' => 'Vargas', 'escuela_profesional' => 'Derecho y CC.PP.', 'ciclo' => 'VI CICLO'],
+            ['dni' => '72819212', 'codigo_institucional' => '0202114010', 'codigo_uns' => '202114010', 'nombres' => 'Diego', 'apellidos' => 'Paredes', 'escuela_profesional' => 'Derecho y CC.PP.', 'ciclo' => 'VIII CICLO'],
+        ];
+
+        DB::table('users')->insert(array_map(function (array $usuario) use ($timestamp): array {
+            return [
+                ...$usuario,
+                'name' => $usuario['nombres'].' '.$usuario['apellidos'],
+                'email' => $usuario['codigo_institucional'].'@uns.edu.pe',
+                'email_verified_at' => $timestamp,
+                'password' => Hash::make('12345678'),
+                'estado' => 'activo',
+                'created_at' => $timestamp,
+                'updated_at' => $timestamp,
+            ];
+        }, $usuarios));
 
         DB::table('docentes')->insert([
             ['dni' => '40000001', 'nombres' => 'Carlos', 'apellidos' => 'Pérez', 'estado' => 'activo', 'created_at' => $timestamp, 'updated_at' => $timestamp],
