@@ -60,7 +60,7 @@
                             {{ auth()->user()->nombres ?? 'Fernando' }} {{ auth()->user()->apellidos ?? 'Chinchay' }}
                         </p>
                         <p class="text-xs text-red-200">
-                            {{ auth()->user()->escuela_profesional ?? 'Ingeniería de Sistemas' }}
+                            Cod: {{ auth()->user()->codigo_institucional ?? '0202114001' }}
                         </p>
                     </div>
 
@@ -80,51 +80,10 @@
         </div>
     </header>
 
-    <div class="flex-1 flex max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 gap-6">
-
-        <!-- Navegación Lateral -->
-        <aside class="w-64 bg-white rounded-2xl shadow-sm border border-gray-200 p-4 shrink-0 hidden md:block">
-            <nav class="space-y-1">
-                <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Menú Principal</p>
-                
-                <a href="{{ url('/dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-[#DC2C4C] transition">
-                    <i class="fa-solid fa-chart-line text-[#DC2C4C] w-5"></i>
-                    Dashboard / Inicio
-                </a>
-
-                <a href="{{ url('/horarios') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-[#DC2C4C] transition">
-                    <i class="fa-solid fa-calendar-days text-amber-600 w-5"></i>
-                    Mis Horarios
-                </a>
-
-                <a href="{{ url('/cursos-pendientes') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-[#DC2C4C] transition">
-                    <i class="fa-solid fa-book-open text-emerald-600 w-5"></i>
-                    Cursos Pendientes
-                </a>
-
-                <div class="pt-3 pb-1">
-                    <div class="border-t border-gray-200"></div>
-                </div>
-
-                <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Proceso Activo</p>
-
-                <a href="{{ url('/matricula') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-semibold bg-[#DC2C4C] text-white shadow hover:bg-[#B51F3B] transition">
-                    <i class="fa-solid fa-pen-to-square w-5"></i>
-                    Proceso Matrícula
-                </a>
-
-                <a href="{{ url('/consolidado') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-[#DC2C4C] transition">
-                    <i class="fa-solid fa-file-invoice text-purple-600 w-5"></i>
-                    Consolidado Final
-                </a>
-            </nav>
-        </aside>
-
-        <!-- Contenido Dinámico -->
-        <main class="flex-1 min-w-0">
-            @yield('content')
-        </main>
-    </div>
+    <!-- Contenedor Principal Centrado (Sin Menú Lateral) -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        @yield('content')
+    </main>
 
     <!-- Footer Institucional -->
     <footer class="bg-white border-t border-gray-200 py-4 mt-auto">
