@@ -1,202 +1,157 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard - Matrícula UNS')
+@section('title', 'Main Menu - Módulo de Matrícula UNS')
 
 @section('content')
-    <div class="space-y-6">
+<style>
+    /* Estilo de cortes geométricos estilo Cyberpunk / Sci-Fi aprobados */
+    .clip-panel-container {
+        clip-path: polygon(0 0, calc(100% - 35px) 0, 100% 35px, 100% 100%, 0 100%);
+    }
 
-        <!-- Banner Bienvenida UNS (Rojo Guinda) -->
-        <div class="bg-gradient-to-r from-red-900 via-red-800 to-uns-darkred text-white rounded-xl p-6 shadow-md relative overflow-hidden border-l-4 border-uns-gold">
-            <div class="relative z-10">
-                <span class="bg-uns-gold text-xs font-bold px-2.5 py-1 rounded text-white uppercase tracking-wider">Ciclo 2026-I</span>
-                <h2 class="text-2xl font-bold mt-2">¡Bienvenido, Fernando!</h2>
-                <p class="text-red-100 text-sm mt-1">Estudiante de Ingeniería de Sistemas &bull; Código: 0202114001</p>
+    @media (min-width: 1024px) {
+        .interlocked-card-left {
+            clip-path: polygon(0 0, 100% 0, calc(100% - 45px) 100%, 0 100%);
+            margin-right: -40px;
+        }
 
-                <div class="mt-4 flex flex-wrap gap-3">
-                    <a href="{{ url('/matricula') }}" class="bg-uns-gold hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2 rounded-lg shadow flex items-center gap-2 transition">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        Iniciar Matrícula 2026-I
+        .interlocked-card-center {
+            clip-path: polygon(45px 0, 100% 0, calc(100% - 45px) 100%, 0 100%);
+            margin-right: -40px;
+            padding-left: 55px !important;
+        }
+
+        .interlocked-card-right {
+            clip-path: polygon(45px 0, 100% 0, 100% 100%, 0 100%);
+            padding-left: 55px !important;
+        }
+    }
+</style>
+
+<div class="space-y-8">
+
+    <!-- Header Banner -->
+    <div class="text-center max-w-3xl mx-auto space-y-2">
+        <span class="bg-[#DC2C4C]/10 text-[#DC2C4C] text-xs font-tech font-extrabold px-3 py-1 rounded-full uppercase tracking-widest border border-[#DC2C4C]/20">
+            SISTEMA INTEGRADO DE CONTROL
+        </span>
+        <h2 class="font-tech text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-wide uppercase">
+            BIENVENIDO AL SISTEMA DE INTELIGENCIA ACADÉMICA
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500">
+            Selecciona un módulo principal para acceder a la información de la institución.
+        </p>
+    </div>
+
+    <!-- PANEL UNIFICADO INTERCONECTADO (3 TARJETAS APROBADAS) -->
+    <div class="bg-white border-4 border-[#DC2C4C] rounded-2xl shadow-2xl overflow-hidden clip-panel-container p-2 bg-[#DC2C4C]/5">
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-0">
+
+            <!-- SECCIÓN 1: VER HORARIOS -->
+            <div class="bg-white p-6 sm:p-8 border-b-2 lg:border-b-0 lg:border-r-2 border-[#DC2C4C]/30 interlocked-card-left flex flex-col justify-between space-y-6 group hover:bg-red-50/60 transition duration-300">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div class="w-16 h-16 rounded-2xl bg-red-50 border-2 border-[#DC2C4C]/30 flex items-center justify-center text-[#DC2C4C] text-3xl group-hover:scale-110 group-hover:bg-[#DC2C4C] group-hover:text-white transition duration-300 shadow-sm">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <span class="font-tech text-xs font-bold text-gray-400 bg-red-50 px-2 py-1 rounded">MÓDULO 01</span>
+                    </div>
+
+                    <div>
+                        <h3 class="font-tech text-2xl font-black tracking-wide text-[#DC2C4C] group-hover:text-[#B51F3B] transition">
+                            VER HORARIOS
+                        </h3>
+                        <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                            Consulta y administra todos los horarios de clases, asignación de aulas, pabellones y distribución de laboratorios del ciclo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="space-y-4 pt-4 border-t border-gray-100 pr-6">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-gray-400 font-semibold">Último Registro:</span>
+                        <span class="font-extrabold text-gray-900 bg-gray-100 px-2 py-0.5 rounded">2025-II</span>
+                    </div>
+
+                    <a href="{{ url('/horarios') }}" class="w-full bg-[#DC2C4C] hover:bg-[#B51F3B] text-white font-tech font-extrabold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition text-xs tracking-wider shadow-md">
+                        <span>ACCEDER AHORA</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
                     </a>
                 </div>
             </div>
-        </div>
 
-        <!-- Cards de Resumen -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 rounded-lg bg-red-100 text-uns-red flex items-center justify-center text-xl">
-                    <i class="fa-solid fa-graduation-cap"></i>
+            <!-- SECCIÓN 2: CURSOS PENDIENTES -->
+            <div class="bg-white p-6 sm:p-8 border-b-2 lg:border-b-0 lg:border-r-2 border-[#DC2C4C]/30 interlocked-card-center flex flex-col justify-between space-y-6 group hover:bg-amber-50/60 transition duration-300">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center pr-6">
+                        <div class="w-16 h-16 rounded-2xl bg-amber-50 border-2 border-amber-500/30 flex items-center justify-center text-amber-600 text-3xl group-hover:scale-110 group-hover:bg-amber-500 group-hover:text-white transition duration-300 shadow-sm">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <span class="font-tech text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded">MÓDULO 02</span>
+                    </div>
+
+                    <div class="pr-6">
+                        <h3 class="font-tech text-2xl font-black tracking-wide text-[#DC2C4C] group-hover:text-amber-600 transition">
+                            CURSOS PENDIENTES
+                        </h3>
+                        <p class="text-xs text-gray-500 mt-2 leading-relaxed">
+                            Revisa el listado de asignaturas aprobadas, créditos de prerrequisito y la carga académica proyectada del semestre.
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-xs text-gray-500 uppercase font-semibold">Ciclo Relativo</p>
-                    <p class="text-lg font-bold text-gray-800">VI Ciclo</p>
+
+                <div class="space-y-4 pt-4 border-t border-gray-100 pr-6">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-gray-400 font-semibold">Cursos Aptos:</span>
+                        <span class="font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded">8 DISPONIBLES</span>
+                    </div>
+
+                    <a href="{{ url('/cursos-pendientes') }}" class="w-full bg-[#DC2C4C] hover:bg-[#B51F3B] text-white font-tech font-extrabold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition text-xs tracking-wider shadow-md">
+                        <span>VER CURSOS</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">
-                    <i class="fa-solid fa-list-check"></i>
+            <!-- SECCIÓN 3: MATRICULARME (PROCESO ACTIVO) -->
+            <div class="bg-gradient-to-br from-white via-red-50/40 to-red-100/50 p-6 sm:p-8 interlocked-card-right flex flex-col justify-between space-y-6 group hover:bg-red-100/60 transition duration-300">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <div class="w-16 h-16 rounded-2xl bg-[#DC2C4C] text-white flex items-center justify-center text-3xl shadow-md group-hover:scale-110 transition duration-300">
+                            <i class="fa-solid fa-check-double"></i>
+                        </div>
+                        <span class="bg-[#DC2C4C] text-white text-[10px] font-tech font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
+                            ¡PROCESO ACTIVO!
+                        </span>
+                    </div>
+
+                    <div>
+                        <h3 class="font-tech text-2xl font-black tracking-wide text-[#DC2C4C]">
+                            MATRICULARME
+                        </h3>
+                        <p class="text-xs text-gray-700 mt-2 leading-relaxed font-semibold">
+                            Inicia la inscripción oficial de asignaturas para el ciclo 2026-I, selecciona tus grupos de laboratorio y emite tu ficha.
+                        </p>
+                    </div>
                 </div>
-                <div>
-                    <p class="text-xs text-gray-500 uppercase font-semibold">Cursos Aptos</p>
-                    <p class="text-lg font-bold text-gray-800">8 Cursos Disponibles</p>
+
+                <div class="space-y-4 pt-4 border-t-2 border-[#DC2C4C]/30">
+                    <div class="flex justify-between items-center text-xs font-mono">
+                        <span class="text-gray-600 font-bold">Estado:</span>
+                        <span class="font-extrabold text-green-800 bg-green-100 px-2.5 py-1 rounded-full">HABILITADO</span>
+                    </div>
+
+                    <a href="{{ url('/matricula') }}" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-tech font-extrabold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition text-xs tracking-wider shadow-lg">
+                        <span>INICIAR MATRÍCULA AHORA</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
                 </div>
             </div>
 
-            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex items-center gap-4">
-                <div class="w-12 h-12 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center text-xl">
-                    <i class="fa-solid fa-shield-halved"></i>
-                </div>
-                <div>
-                    <p class="text-xs text-gray-500 uppercase font-semibold">Estado de Alumno</p>
-                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-green-100 text-green-800">
-                    Regular
-                </span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sección Cursos Disponibles para Matrícula (Ancho completo) -->
-        <div id="pendientes" class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-4 mb-4 border-b border-gray-100 gap-3">
-                <div>
-                    <h3 class="font-bold text-lg text-gray-800 flex items-center gap-2">
-                        <i class="fa-solid fa-book-open text-emerald-600"></i>
-                        Cursos Disponibles para Matrícula (Ciclo VI)
-                    </h3>
-                    <p class="text-xs text-gray-500 mt-0.5">Asignaturas aptas según tu plan de estudios de Ingeniería de Sistemas UNS</p>
-                </div>
-                <a href="{{ url('/matricula') }}" class="bg-uns-red hover:bg-uns-darkred text-white text-xs font-semibold px-4 py-2 rounded-lg shadow transition flex items-center gap-2">
-                    <span>Ir a Matricularme</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <!-- Lista de los 8 cursos reales de la UNS -->
-            <div class="space-y-3">
-
-                <!-- Curso 1 -->
-                <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-emerald-50 transition">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-mono font-bold bg-white text-gray-700 px-2.5 py-1 rounded border border-gray-200">1411-0035</span>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">SISTEMAS DE INFORMACION II</p>
-                            <p class="text-xs text-gray-500">Ciclo: 6 &bull; Grupo: C &bull; Modalidad: 1° REGULAR</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 self-end md:self-auto">
-                        <span class="text-xs font-semibold text-red-800 bg-red-100 px-2.5 py-1 rounded-full">3 Créditos</span>
-                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Apto</span>
-                    </div>
-                </div>
-
-                <!-- Curso 2 -->
-                <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-emerald-50 transition">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-mono font-bold bg-white text-gray-700 px-2.5 py-1 rounded border border-gray-200">1411-0033</span>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">BASE DE DATOS II</p>
-                            <p class="text-xs text-gray-500">Ciclo: 6 &bull; Grupo: A &bull; Modalidad: 1° REGULAR</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 self-end md:self-auto">
-                        <span class="text-xs font-semibold text-red-800 bg-red-100 px-2.5 py-1 rounded-full">4 Créditos</span>
-                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Apto</span>
-                    </div>
-                </div>
-
-                <!-- Curso 3 -->
-                <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-emerald-50 transition">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-mono font-bold bg-white text-gray-700 px-2.5 py-1 rounded border border-gray-200">1411-0031</span>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">APLICACIONES DISTRIBUIDAS I</p>
-                            <p class="text-xs text-gray-500">Ciclo: 6 &bull; Grupo: A &bull; Modalidad: 1° REGULAR</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 self-end md:self-auto">
-                        <span class="text-xs font-semibold text-red-800 bg-red-100 px-2.5 py-1 rounded-full">4 Créditos</span>
-                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Apto</span>
-                    </div>
-                </div>
-
-                <!-- Curso 4 -->
-                <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-emerald-50 transition">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-mono font-bold bg-white text-gray-700 px-2.5 py-1 rounded border border-gray-200">1411-0032</span>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">COMUNICACION DE DATOS</p>
-                            <p class="text-xs text-gray-500">Ciclo: 6 &bull; Grupo: A &bull; Modalidad: 1° REGULAR</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 self-end md:self-auto">
-                        <span class="text-xs font-semibold text-red-800 bg-red-100 px-2.5 py-1 rounded-full">4 Créditos</span>
-                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Apto</span>
-                    </div>
-                </div>
-
-                <!-- Curso 5 -->
-                <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-emerald-50 transition">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-mono font-bold bg-white text-gray-700 px-2.5 py-1 rounded border border-gray-200">1411-0034</span>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">ARQUITECTURA DE SOFTWARE EMPRESARIAL</p>
-                            <p class="text-xs text-gray-500">Ciclo: 6 &bull; Grupo: A &bull; Modalidad: 1° REGULAR</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 self-end md:self-auto">
-                        <span class="text-xs font-semibold text-red-800 bg-red-100 px-2.5 py-1 rounded-full">4 Créditos</span>
-                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Apto</span>
-                    </div>
-                </div>
-
-                <!-- Curso 6 -->
-                <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-emerald-50 transition">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-mono font-bold bg-white text-gray-700 px-2.5 py-1 rounded border border-gray-200">1411-0036</span>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">ADMINISTRACION DE PROCESOS DE NEGOCIO</p>
-                            <p class="text-xs text-gray-500">Ciclo: 6 &bull; Grupo: A &bull; Modalidad: 1° REGULAR</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 self-end md:self-auto">
-                        <span class="text-xs font-semibold text-red-800 bg-red-100 px-2.5 py-1 rounded-full">3 Créditos</span>
-                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Apto</span>
-                    </div>
-                </div>
-
-                <!-- Curso 7 -->
-                <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-emerald-50 transition">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-mono font-bold bg-white text-gray-700 px-2.5 py-1 rounded border border-gray-200">1411-0037</span>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">INGENIERIA DE REQUERIMIENTOS</p>
-                            <p class="text-xs text-gray-500">Ciclo: 6 &bull; Grupo: B &bull; Modalidad: 1° REGULAR</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 self-end md:self-auto">
-                        <span class="text-xs font-semibold text-red-800 bg-red-100 px-2.5 py-1 rounded-full">3 Créditos</span>
-                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Apto</span>
-                    </div>
-                </div>
-
-                <!-- Curso 8 -->
-                <div class="p-4 bg-emerald-50/50 rounded-xl border border-emerald-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-3 hover:bg-emerald-50 transition">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-mono font-bold bg-white text-gray-700 px-2.5 py-1 rounded border border-gray-200">1411-0038</span>
-                        <div>
-                            <p class="font-bold text-sm text-gray-900">GESTION DE PROYECTOS DE SOFTWARE</p>
-                            <p class="text-xs text-gray-500">Ciclo: 6 &bull; Grupo: A &bull; Modalidad: 1° REGULAR</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-3 self-end md:self-auto">
-                        <span class="text-xs font-semibold text-red-800 bg-red-100 px-2.5 py-1 rounded-full">4 Créditos</span>
-                        <span class="text-xs font-bold text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-full">Apto</span>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
     </div>
+
+</div>
 @endsection
