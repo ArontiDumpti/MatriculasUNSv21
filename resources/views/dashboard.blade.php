@@ -4,7 +4,7 @@
 
 @section('content')
 <style>
-    /* Estilo de cortes geométricos estilo Cyberpunk / Sci-Fi aprobados */
+    /* Estructura de tarjetas entrelazadas con cortes geométricos */
     .clip-panel-container {
         clip-path: polygon(0 0, calc(100% - 35px) 0, 100% 35px, 100% 100%, 0 100%);
     }
@@ -30,7 +30,7 @@
 
 <div class="space-y-8">
 
-    <!-- Header Banner -->
+    <!-- Banner Principal -->
     <div class="text-center max-w-3xl mx-auto space-y-2">
         <span class="bg-[#DC2C4C]/10 text-[#DC2C4C] text-xs font-tech font-extrabold px-3 py-1 rounded-full uppercase tracking-widest border border-[#DC2C4C]/20">
             SISTEMA INTEGRADO DE CONTROL
@@ -43,12 +43,12 @@
         </p>
     </div>
 
-    <!-- PANEL UNIFICADO INTERCONECTADO (3 TARJETAS APROBADAS) -->
+    <!-- Panel de Módulos Principales -->
     <div class="bg-white border-4 border-[#DC2C4C] rounded-2xl shadow-2xl overflow-hidden clip-panel-container p-2 bg-[#DC2C4C]/5">
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-0">
 
-            <!-- SECCIÓN 1: VER HORARIOS -->
+            <!-- Módulo 01: Ver Horarios -->
             <div class="bg-white p-6 sm:p-8 border-b-2 lg:border-b-0 lg:border-r-2 border-[#DC2C4C]/30 interlocked-card-left flex flex-col justify-between space-y-6 group hover:bg-red-50/60 transition duration-300">
                 <div class="space-y-4">
                     <div class="flex justify-between items-center">
@@ -81,7 +81,7 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 2: CURSOS PENDIENTES -->
+            <!-- Módulo 02: Cursos Pendientes -->
             <div class="bg-white p-6 sm:p-8 border-b-2 lg:border-b-0 lg:border-r-2 border-[#DC2C4C]/30 interlocked-card-center flex flex-col justify-between space-y-6 group hover:bg-amber-50/60 transition duration-300">
                 <div class="space-y-4">
                     <div class="flex justify-between items-center pr-6">
@@ -114,7 +114,7 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN 3: MATRICULARME (PROCESO ACTIVO) -->
+            <!-- Módulo 03: Matricularme -->
             <div class="bg-gradient-to-br from-white via-red-50/40 to-red-100/50 p-6 sm:p-8 interlocked-card-right flex flex-col justify-between space-y-6 group hover:bg-red-100/60 transition duration-300">
                 <div class="space-y-4">
                     <div class="flex justify-between items-center">
@@ -122,7 +122,7 @@
                             <i class="fa-solid fa-check-double"></i>
                         </div>
                         <span class="bg-[#DC2C4C] text-white text-[10px] font-tech font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
-                            ¡PROCESO ACTIVO!
+                            PROCESO ACTIVO
                         </span>
                     </div>
 

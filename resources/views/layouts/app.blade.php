@@ -29,11 +29,11 @@
 </head>
 <body class="bg-gray-100 font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- Top Navigation Header (Rojo Carmesí UNS) -->
+    <!-- Header Principal Institucional -->
     <header class="bg-[#DC2C4C] text-white shadow-md border-b-4 border-amber-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <!-- Logo & Brand UNS -->
+                <!-- Identidad Institucional UNS -->
                 <div class="flex items-center space-x-3">
                     <a href="{{ url('/dashboard') }}" class="flex items-center space-x-3">
                         <div class="bg-white p-1 rounded-lg shadow-sm flex items-center justify-center">
@@ -46,7 +46,7 @@
                     </a>
                 </div>
 
-                <!-- Parte Superior Derecha: Ciclo Actual + Perfil -->
+                <!-- Estado del Ciclo & Usuario -->
                 <div class="flex items-center space-x-4">
                     <div class="bg-[#B51F3B] px-3.5 py-1.5 rounded-lg border border-amber-400/40 text-right hidden sm:block">
                         <p class="text-[10px] text-amber-300 font-bold uppercase tracking-wider">Ciclo Académico Actual</p>
@@ -54,12 +54,16 @@
                     </div>
 
                     <div class="text-right hidden md:block">
-                        <p class="text-sm font-semibold">Fernando Ch.</p>
-                        <p class="text-xs text-red-200">Ing. de Sistemas - Estudiante</p>
+                        <p class="text-sm font-semibold">
+                            {{ auth()->user()->nombres ?? 'Fernando' }} {{ auth()->user()->apellidos ?? 'Chinchay' }}
+                        </p>
+                        <p class="text-xs text-red-200">
+                            Cod: {{ auth()->user()->codigo_institucional ?? '0202114001' }}
+                        </p>
                     </div>
 
                     <div class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow border-2 border-white overflow-hidden">
-                        <img src="{{ asset('img/perfil.jpg') }}" alt="Fernando" class="w-full h-full object-cover" onerror="this.outerHTML='F'">
+                        <img src="{{ asset('img/perfil.jpg') }}" alt="Perfil" class="w-full h-full object-cover" onerror="this.outerHTML='F'">
                     </div>
 
                     <a href="{{ url('/login') }}" class="text-red-100 hover:text-white text-sm flex items-center gap-1 bg-[#B51F3B] px-3 py-1.5 rounded-md transition hover:bg-red-950">
@@ -73,7 +77,7 @@
 
     <div class="flex-1 flex max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 gap-6">
 
-        <!-- Sidebar Navigation -->
+        <!-- Navegación Lateral -->
         <aside class="w-64 bg-white rounded-2xl shadow-sm border border-gray-200 p-4 shrink-0 hidden md:block">
             <nav class="space-y-1">
                 <p class="px-3 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Menú Principal</p>
@@ -111,13 +115,13 @@
             </nav>
         </aside>
 
-        <!-- Main Dynamic Content -->
+        <!-- Contenido Dinámico -->
         <main class="flex-1 min-w-0">
             @yield('content')
         </main>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer Institucional -->
     <footer class="bg-white border-t border-gray-200 py-4 mt-auto">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-gray-500">
             &copy; 2026 Universidad Nacional del Santa &bull; Módulo de Matrículas UNS
