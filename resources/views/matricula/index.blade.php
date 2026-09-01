@@ -17,8 +17,12 @@
             <div class="flex justify-between items-center pb-3 border-b border-gray-100"><h3 class="font-bold text-gray-800 flex items-center gap-2"><i class="fa-solid fa-list-check text-[#DC2C4C]"></i>Asignaturas Aptas para {{ auth()->user()->ciclo }}</h3><span class="text-xs text-gray-500">Selecciona al menos 1 curso</span></div>
             <div class="space-y-3">
                 @forelse ($cursos as $curso)
+                    @php
+                        $seccion = $curso->secciones->first();
+                        $docente = $seccion?->docente;
+                    @endphp
                     <label class="p-4 bg-gray-50 rounded-xl border border-gray-200 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-[#DC2C4C]/40 transition cursor-pointer">
-                        <div class="flex items-center gap-3"><input type="checkbox" name="cursos[]" value="{{ $curso->id }}" data-creditos="{{ $curso->creditos }}" class="course-checkbox w-5 h-5 rounded text-[#DC2C4C] focus:ring-[#DC2C4C] border-gray-300"><div><span class="text-[10px] font-mono font-bold bg-white text-gray-600 px-2 py-0.5 rounded border border-gray-200">{{ $curso->codigo }}</span><h4 class="font-bold text-sm text-gray-900 mt-0.5">{{ $curso->nombre }}</h4><p class="text-xs text-gray-500">{{ $curso->escuela_profesional }} · {{ $curso->ciclo }}° ciclo</p></div></div>
+                        <div class="flex items-center gap-3"><input type="checkbox" name="cursos[]" value="{{ $curso->id }}" data-creditos="{{ $curso->creditos }}" class="course-checkbox w-5 h-5 rounded text-[#DC2C4C] focus:ring-[#DC2C4C] border-gray-300"><div><span class="text-[10px] font-mono font-bold bg-white text-gray-600 px-2 py-0.5 rounded border border-gray-200">{{ $curso->codigo }}</span><h4 class="font-bold text-sm text-gray-900 mt-0.5">{{ $curso->nombre }}</h4><p class="text-xs text-gray-500">{{ $curso->escuela_profesional }} · {{ $curso->ciclo }}° ciclo</p><p class="text-[10px] text-gray-500">{{ $docente ? 'Docente: '.$docente->nombres.' '.$docente->apellidos : 'Docente por asignar' }}</p></div></div>
                         <span class="text-xs font-bold text-[#DC2C4C] bg-red-50 px-2.5 py-1 rounded">{{ $curso->creditos }} CRED</span>
                     </label>
                 @empty

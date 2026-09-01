@@ -21,8 +21,12 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             @forelse ($cursos as $curso)
+                @php
+                    $seccion = $curso->secciones->first();
+                    $docente = $seccion?->docente;
+                @endphp
                 <div class="p-4 bg-gray-50 rounded-xl border border-gray-200 flex justify-between items-start">
-                    <div class="space-y-1 pr-4"><span class="text-[10px] font-mono font-bold bg-white text-gray-600 px-2 py-0.5 rounded border border-gray-200">{{ $curso->codigo }}</span><h4 class="font-bold text-sm text-gray-900">{{ $curso->nombre }}</h4><p class="text-xs text-gray-500">{{ $curso->escuela_profesional }} · {{ $curso->ciclo }}° ciclo</p></div>
+                    <div class="space-y-1 pr-4"><span class="text-[10px] font-mono font-bold bg-white text-gray-600 px-2 py-0.5 rounded border border-gray-200">{{ $curso->codigo }}</span><h4 class="font-bold text-sm text-gray-900">{{ $curso->nombre }}</h4><p class="text-xs text-gray-500">{{ $curso->escuela_profesional }} · {{ $curso->ciclo }}° ciclo</p><p class="text-[10px] text-gray-500">{{ $docente ? 'Docente: '.$docente->nombres.' '.$docente->apellidos : 'Docente por asignar' }}</p></div>
                     <div class="text-right shrink-0"><span class="text-xs font-extrabold text-[#DC2C4C] bg-red-50 px-2 py-1 rounded">{{ $curso->creditos }} CRED</span><p class="text-[10px] text-emerald-600 font-bold mt-1">• APTO</p></div>
                 </div>
             @empty

@@ -70,6 +70,7 @@
                                         <div class="p-2.5 {{ $color[0] }} border-l-4 {{ $color[1] }} rounded shadow-sm min-h-20">
                                             <p class="font-bold {{ $color[2] }} leading-tight">{{ $curso->nombre }}</p>
                                             <p class="mt-1 text-[10px] {{ $color[3] }}">{{ $horario->aula ?? 'Aula por asignar' }} · {{ \Carbon\Carbon::parse($horario->hora_inicio)->format('H:i') }}-{{ \Carbon\Carbon::parse($horario->hora_fin)->format('H:i') }}</p>
+                                            <p class="text-[10px] {{ $color[3] }}">{{ $horario->seccion->docente ? 'Doc. '.$horario->seccion->docente->nombres.' '.$horario->seccion->docente->apellidos : 'Docente por asignar' }}</p>
                                         </div>
                                     @else
                                         <p class="py-5 text-center text-gray-300 font-mono text-[10px]">- LIBRE -</p>

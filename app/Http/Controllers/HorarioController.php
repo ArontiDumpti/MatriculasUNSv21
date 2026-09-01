@@ -26,7 +26,7 @@ class HorarioController extends Controller
             : collect();
 
         $horarios = Horario::query()
-            ->with('seccion.curso')
+            ->with(['seccion.curso', 'seccion.docente'])
             ->whereHas('seccion.detallesMatricula.matricula', function ($query) {
                 $query->where('user_id', auth()->id())
                     ->where('estado', 'confirmada');

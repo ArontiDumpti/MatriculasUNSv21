@@ -28,6 +28,9 @@ class CursoController extends Controller
         $ciclo = $this->cicloNumerico($usuario->ciclo);
 
         $consulta = Curso::query()
+            ->with(['secciones' => function ($query) {
+                $query->where('estado', 'activo')->with('docente');
+            }])
             ->where('escuela_profesional', $usuario->escuela_profesional)
             ->where('ciclo', $ciclo)
             ->where('estado', 'activo')

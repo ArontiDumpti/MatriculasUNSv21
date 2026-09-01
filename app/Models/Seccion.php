@@ -17,6 +17,11 @@ class Seccion extends Model
         return $this->belongsTo(Curso::class);
     }
 
+    public function docente()
+    {
+        return $this->belongsTo(Docente::class);
+    }
+
     public function horarios()
     {
         return $this->hasMany(Horario::class);
