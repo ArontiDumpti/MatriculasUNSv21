@@ -43,7 +43,7 @@
         </p>
     </div>
 
-    <!-- Panel de Módulos Principales -->
+    <!-- Panel de Módulos Principales (3 Tarjetas Uniformes) -->
     <div class="bg-white border-4 border-[#DC2C4C] rounded-2xl shadow-2xl overflow-hidden clip-panel-container p-2 bg-[#DC2C4C]/5">
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-2 lg:gap-0">
@@ -114,15 +114,15 @@
                 </div>
             </div>
 
-            <!-- Módulo 03: Matricularme -->
+            <!-- Módulo 03: Matricularme (Uniforme como Módulo 03) -->
             <div class="bg-gradient-to-br from-white via-red-50/40 to-red-100/50 p-6 sm:p-8 interlocked-card-right flex flex-col justify-between space-y-6 group hover:bg-red-100/60 transition duration-300">
                 <div class="space-y-4">
                     <div class="flex justify-between items-center">
                         <div class="w-16 h-16 rounded-2xl bg-[#DC2C4C] text-white flex items-center justify-center text-3xl shadow-md group-hover:scale-110 transition duration-300">
                             <i class="fa-solid fa-check-double"></i>
                         </div>
-                        <span class="bg-[#DC2C4C] text-white text-[10px] font-tech font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
-                            PROCESO ACTIVO
+                        <span class="font-tech text-xs font-bold text-[#DC2C4C] bg-red-50 px-2 py-1 rounded border border-red-100">
+                            MÓDULO 03
                         </span>
                     </div>
 
